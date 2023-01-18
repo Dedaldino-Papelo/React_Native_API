@@ -1,4 +1,4 @@
-import { createDrawerNavigator } from "react-navigation-drawer";
+/* import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createAppContainer } from "react-navigation";
 import HomeStack from "./homeStack";
 import AboutStack from "./AboutStack";
@@ -13,4 +13,4 @@ const RootDrawerNavigator = createDrawerNavigator({
     }
 })
 
-export default createAppContainer(RootDrawerNavigator)
+export default createAppContainer(RootDrawerNavigator) */

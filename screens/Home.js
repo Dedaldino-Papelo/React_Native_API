@@ -19,7 +19,7 @@ const Home = ( {navigation} ) => {
       keyExtractor={(item) => item.id} 
       data={users}
       renderItem={({ item }) => (
-        <TouchableOpacity onPress={() => navigation.navigate('ReviewDetails', item) }>
+        <TouchableOpacity>
           <Text>{item.name}</Text>
         </TouchableOpacity>
       )}

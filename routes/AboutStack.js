@@ -1,4 +1,4 @@
-import { createStackNavigator } from "react-navigation-stack";
+/* import { createStackNavigator } from "react-navigation-stack";
 import About from "../screens/About";
 
 
@@ -20,3 +20,4 @@ const AboutStack = createStackNavigator(screens,{
 })
 
 export default AboutStack
+ */
