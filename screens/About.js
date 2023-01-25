@@ -14,4 +14,4 @@ const style = StyleSheet.create({
         padding: 24
     }
 })
-export default Home
+export default About

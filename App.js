@@ -7,10 +7,14 @@ import { StyleSheet, View } from 'react-native'
 /* import Navigator from './routes/drawer' */
 import Home from './screens/Home'
 import ReviewDetails from './screens/ReviewDetails'
+import Root from './routes/drawer';
+import About from './screens/About'
 import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator()
 SplashScreen.preventAutoHideAsync()
 
 export default function App() {
@@ -30,7 +34,11 @@ export default function App() {
     <View style={style.container} onLayout={onLayoutRootView}>    
     <NavigationContainer>
         <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen 
+          name="Root" 
+          component={Root} 
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="Review Details" component={ReviewDetails} />
       </Stack.Navigator>
     </NavigationContainer>
