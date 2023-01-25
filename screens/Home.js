@@ -1,39 +1,31 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-import { useCallback } from 'react';
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { Text, View, FlatList, TouchableOpacity } from 'react-native'
+import {globalStyle} from '../global/style'
 
 
-SplashScreen.preventAutoHideAsync()
+const Home = ({ navigation: {navigate} }) => {
+  const [users, setUsers] = useState([])
 
-const Home = () => {
-  const [fontsLoaded] = useFonts({
-    'dancing-regular': require('../assets/fonts/DancingScript-Regular.ttf'),
-    'dancing-bold': require('../assets/fonts/DancingScript-Bold.ttf'),
-  })
+  useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/users')
+    .then(resp => setUsers(resp.data))
+  },[])
   
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
 
   return (
-      <View style={style.container} onLayout={onLayoutRootView}>
-      <Text style={{fontFamily: 'dancing-regular', fontSize: 24, color: '#fff'}}>Home Page</Text>
-      <Text style={{fontFamily: 'dancing-bold', fontSize: 24, color: '#fff'}}>Dancing Script</Text>
+    <View style={globalStyle.container}>
+     <FlatList
+      keyExtractor={(item) => item.id} 
+      data={users}
+      renderItem={({ item }) => (
+        <TouchableOpacity onPress={() => navigate('Review Details', item)}>
+          <Text>{item.name}</Text>
+        </TouchableOpacity>
+      )}
+     />
     </View>
   )
 }
 
-const style = StyleSheet.create({
-    container: {
-        padding: 34
-    },
-})
 export default Home
