@@ -3,10 +3,9 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useCallback } from 'react';
-import { StyleSheet, View } from 'react-native'
-/* import Navigator from './routes/drawer' */
-import Home from './screens/Home'
+import { StyleSheet, Text, View } from 'react-native'
 import ReviewDetails from './screens/ReviewDetails'
+import Root from './routes/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 
 
@@ -27,10 +26,14 @@ export default function App() {
   if (!fontsLoaded) return null;
 
   return (
-    <View style={style.container} onLayout={onLayoutRootView}>    
+    <View style={style.container} onLayout={onLayoutRootView}>   
     <NavigationContainer>
         <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen 
+          name="Root" 
+          component={Root} 
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="Review Details" component={ReviewDetails} />
       </Stack.Navigator>
     </NavigationContainer>
