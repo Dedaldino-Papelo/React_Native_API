@@ -9,6 +9,11 @@ export const globalStyle = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#ddd',
         padding: 10,
-        fontSize: 18
+        fontSize: 18,
+        marginBottom: 10
+    },
+    errorText: {
+        color: '#ff1111',
+        textTransform: 'uppercase'
     }
 })

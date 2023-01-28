@@ -1,6 +1,12 @@
-import { View, Button, TextInput } from 'react-native'
+import { View, Button, TextInput, Text } from 'react-native'
 import { globalStyle } from '../global/style'
 import {Formik} from 'formik'
+import * as yup from 'yup';
+
+let schema = yup.object({
+    name: yup.string().required(),
+    email: yup.string().required().email()
+})
 
 export default function ReviewForm({ addItems }){
     return(
@@ -10,6 +16,7 @@ export default function ReviewForm({ addItems }){
                     name: '', 
                     email: ''
                 }}
+                validationSchema={schema}
                 onSubmit={(values, actions) => {
                     actions.resetForm()
                     addItems(values)
@@ -22,13 +29,19 @@ export default function ReviewForm({ addItems }){
                             onChangeText={props.handleChange('name')}
                             value={props.values.name}
                             style={globalStyle.input}
+                            onBlur={props.handleBlur('name')}
                             />
+                            <Text style={globalStyle.errorText}>{props.touched.name && props.errors.name }</Text>
+
                             <TextInput 
                             placeholder='Email' 
                             onChangeText={props.handleChange('email')}
                             value={props.values.email}
                             style={globalStyle.input}
+                            onBlur={props.handleBlur('name')}
                             />
+                             <Text style={globalStyle.errorText}>{props.touched.email && props.errors.email }</Text>
+
                             <Button title='Submit' color='#09afeb' onPress={props.handleSubmit} />
                             
                     </View>
