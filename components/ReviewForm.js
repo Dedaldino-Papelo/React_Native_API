@@ -2,6 +2,7 @@ import { View, Button, TextInput, Text } from 'react-native'
 import { globalStyle } from '../global/style'
 import {Formik} from 'formik'
 import * as yup from 'yup';
+import CustomButton from './CustomButton';
 
 let schema = yup.object({
     name: yup.string().required(),
@@ -42,8 +43,10 @@ export default function ReviewForm({ addItems }){
                             />
                              <Text style={globalStyle.errorText}>{props.touched.email && props.errors.email }</Text>
 
-                            <Button title='Submit' color='#09afeb' onPress={props.handleSubmit} />
-                            
+                            <CustomButton 
+                                text='submit'
+                                onPress={props.handleSubmit}
+                            />
                     </View>
                 )}
 
