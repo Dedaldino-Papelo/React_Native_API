@@ -4,6 +4,7 @@ import { Text, View, FlatList, TouchableOpacity, StyleSheet, Modal } from 'react
 import Card from '../components/Card'
 import {globalStyle} from '../global/style'
 import { MaterialIcons } from '@expo/vector-icons';
+import ReviewForm from '../components/ReviewForm'
 
 
 const Home = ({ navigation: {navigate} }) => {
@@ -14,8 +15,19 @@ const Home = ({ navigation: {navigate} }) => {
     .then(resp => setUsers(resp.data))
   },[])
   
+  const addItems = async ({name, email}) => {
+      await axios.post('https://jsonplaceholder.typicode.com/users',{
+        id: Math.random().toString(),
+        name: name,
+        email: email
+      }, {
+        headers: {'content-type': 'text/json'}
+      })
+      setVisible(false)
+  }
 
   return (
+
     <View style={globalStyle.container}>
       <Modal visible={Visible} animationType='slide'>
         <View style={style.modalContent}>
@@ -25,7 +37,7 @@ const Home = ({ navigation: {navigate} }) => {
           style={style.closeIcon}
           onPress={() => setVisible(false)} 
         />
-          <Text>Add Item to the list</Text>
+          <ReviewForm addItems={addItems}/>
         </View>
       </Modal>
     
