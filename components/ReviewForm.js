@@ -10,7 +10,8 @@ export default function ReviewForm({ addItems }){
                     name: '', 
                     email: ''
                 }}
-                onSubmit={(values) => {
+                onSubmit={(values, actions) => {
+                    actions.resetForm()
                     addItems(values)
                   }}
             >

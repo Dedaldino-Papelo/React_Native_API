@@ -1,6 +1,11 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { Text, View, FlatList, TouchableOpacity, StyleSheet, Modal } from 'react-native'
+
+import { Text, View, 
+        FlatList, TouchableOpacity, 
+        TouchableWithoutFeedback,Keyboard, 
+
+        StyleSheet, Modal } from 'react-native'
 import Card from '../components/Card'
 import {globalStyle} from '../global/style'
 import { MaterialIcons } from '@expo/vector-icons';
@@ -30,15 +35,17 @@ const Home = ({ navigation: {navigate} }) => {
 
     <View style={globalStyle.container}>
       <Modal visible={Visible} animationType='slide'>
-        <View style={style.modalContent}>
-          <MaterialIcons
-          name='close'
-          size={24}
-          style={style.closeIcon}
-          onPress={() => setVisible(false)} 
-        />
-          <ReviewForm addItems={addItems}/>
-        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={style.modalContent}>
+            <MaterialIcons
+            name='close'
+            size={24}
+            style={style.closeIcon}
+            onPress={() => setVisible(false)} 
+          />
+            <ReviewForm addItems={addItems}/>
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
     
       <MaterialIcons
